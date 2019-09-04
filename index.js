@@ -1,11 +1,12 @@
-const apiGSheet = require('./api')
-const api = apiGSheet.api
-const apiConfig = apiGSheet.apiConfig
+const inicio = require('./inicio')
 
 const run = async () => {
     console.clear()
-    const res = await api.get('values/2019', apiConfig)
-    console.log(res)
+
+    await inicio.getAll()
+
+    console.log('\nPressione ctrl + c para continuar...')
+    process.openStdin()
 }
 
 run()
