@@ -1,11 +1,10 @@
-const apiGSheet = require('./api')
-const api = apiGSheet.api
-const apiConfig = apiGSheet.apiConfig
+const { getApi } = require('./api')
 
 const utils = require('./utils')
 
 const getResumoAno = async () => {
-    const res = await api.get('values/2019', apiConfig)
+    const api = await getApi()
+    const res = await api.get('values/2019')
     return res.data.values
 }
 
