@@ -60,4 +60,6 @@ const getInicio = async () => {
     }
 }
 
-module.exports = getInicio
+module.exports = {
+    getInicio
+}
