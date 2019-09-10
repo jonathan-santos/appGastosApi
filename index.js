@@ -1,22 +1,13 @@
-const { getInicio } = require('./inicio')
-const { novoGasto } = require('./novo')
+const testes = require('./testes')
 
 const run = async () => {
     console.clear()
 
-    const inicio = await getInicio()
-    console.log(`inicio.totalBalancoCorrenteAtual: ${inicio.totalBalancoCorrenteAtual}`)
-    console.log(`inicio.totalInvestimentosAtual: ${inicio.totalInvestimentosAtual}`)
-    console.table(inicio.resumoMeses)
+    // await testes.novoGastoTest()
 
-    novoGasto({
-        data: '1',
-        titulo: 'Alguma coisa',
-        valor: 1,
-        tipoGasto: 'Compras',
-        formaPagamento: 'Dinheiro',
-        comentario: 'bla'
-    })
+    await testes.novosGastosTest()
+
+    // await testes.inicioTest()
 
     console.log('\nPressione ctrl + c para continuar...')
     process.openStdin()
