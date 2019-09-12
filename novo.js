@@ -5,9 +5,16 @@ const novoGasto = async (gasto) => {
 
     try {
         console.log("novoGasto: " + JSON.stringify(gasto))
-        await api.post("values/01%2F2019!A5:F5:append", {
+
+        const partesData = gasto.data.split('/')
+        const data = {
+            dia: partesData[0],
+            mes: partesData[1],
+            ano: partesData[2]
+        }
+        await api.post(`values/${data.mes}%2F${data.ano}!A5:F5:append`, {
             values: [[
-                gasto.data,
+                data.dia,
                 gasto.titulo,
                 gasto.valor,
                 gasto.tipoGasto,
