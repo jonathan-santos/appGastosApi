@@ -23,12 +23,13 @@ const getResumoMeses = (resumoAno) => {
     let titulos = []
     let ganhos = []
     let gastos = []
+
     resumoAno.map((row, index) => {
-        if(index == 20) {
+        if(index == 21) {
             titulos = utils.getValoresRow(row)
-        } else if(index == 21) {
-            ganhos = utils.getValoresRow(row)
         } else if(index == 22) {
+            ganhos = utils.getValoresRow(row)
+        } else if(index == 23) {
             gastos = utils.getValoresRow(row)
         }
     })

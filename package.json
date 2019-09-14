@@ -1,7 +1,7 @@
 {
-  "name": "apiGSheets",
-  "version": "1.0.0",
-  "description": "",
+  "name": "app-gastos-api",
+  "version": "0.0.1",
+  "description": "Pacote com o código necessário para se comunicar com o Google Sheets e fazer a comunicação necessária para o app Gastos",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -13,5 +13,8 @@
   "dependencies": {
     "axios": "^0.19.0",
     "googleapis": "^42.0.0"
+  },
+  "repository": {
+    "url": "https://github.com/jonathan-santos/appGastosApi"
   }
 }

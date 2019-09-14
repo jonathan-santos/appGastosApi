@@ -5,9 +5,9 @@ const run = async () => {
 
     // await testes.novoGastoTest()
 
-    await testes.novosGastosTest()
+    // await testes.novosGastosTest()
 
-    // await testes.inicioTest()
+    await testes.inicioTest()
 
     console.log('\nPressione ctrl + c para continuar...')
     process.openStdin()
