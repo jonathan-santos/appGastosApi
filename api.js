@@ -6,9 +6,9 @@ const auth = require('./auth')
 //POST: https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
 //PUT: https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/update
 
-const getApi = async () => {
+const getApi = async (key) => {
     const idPlanilha = '1MV3AOF5m4YdSi7EbfH6Jc3szfhvyapu5uRSYm6hNbRc'
-    const jwt = await auth.getJWT()
+    const jwt = await auth.getJWT(key)
     
     const api = axios.create({
         baseURL: `https://sheets.googleapis.com/v4/spreadsheets/${idPlanilha}`,

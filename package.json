@@ -1,6 +1,6 @@
 {
   "name": "app-gastos-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pacote com o código necessário para se comunicar com o Google Sheets e fazer a comunicação necessária para o app Gastos",
   "main": "index.js",
   "scripts": {

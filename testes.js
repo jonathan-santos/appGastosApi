@@ -1,6 +1,8 @@
 const { getInicio } = require('./inicio')
 const { novoGasto } = require('./novo')
 
+const key = require('./auth.json')
+
 const gastosTestes = [
     { data: '1/1/2019', titulo: 'Alguma coisa', valor: 1, tipoGasto: 'Comida', formaPagamento: 'Dinheiro', comentario: 'Bla' },
     { data: '2/2/2019', titulo: 'Alguma outra coisa', valor: 99.90, tipoGasto: 'Transporte', formaPagamento: 'Débito', comentario: '' },
@@ -19,14 +21,14 @@ const gastosTestes = [
 const inicioTest = async () => {
     console.clear()
 
-    const inicio = await getInicio()
+    const inicio = await getInicio(key)
     console.log(`inicio.totalBalancoCorrenteAtual: ${inicio.totalBalancoCorrenteAtual}`)
     console.log(`inicio.totalInvestimentosAtual: ${inicio.totalInvestimentosAtual}`)
     console.table(inicio.resumoMeses)
 }
 
 const novoGastoTest = async () => {
-    novoGasto(gastosTestes[0])
+    novoGasto(gastosTestes[0], key)
 }
 
 const novosGastosTest = async () => {
@@ -35,7 +37,7 @@ const novosGastosTest = async () => {
         if(count == gastosTestes.length - 1) {
             clearInterval(interval)
         }
-        novoGasto(gastosTestes[count])
+        novoGasto(gastosTestes[count], key)
         count++
     }, 1000)
 }

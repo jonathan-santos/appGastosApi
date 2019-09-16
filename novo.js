@@ -1,7 +1,7 @@
 const { getApi } = require('./api')
 
-const novoGasto = async (gasto) => {
-    const api = await getApi()
+const novoGasto = async (gasto, key) => {
+    const api = await getApi(key)
 
     try {
         console.log("novoGasto: " + JSON.stringify(gasto))

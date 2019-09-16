@@ -2,8 +2,8 @@ const { getApi } = require('./api')
 
 const utils = require('./utils')
 
-const getResumoAno = async () => {
-    const api = await getApi()
+const getResumoAno = async (key) => {
+    const api = await getApi(key)
     const res = await api.get('values/2019')
     return res.data.values
 }
@@ -47,8 +47,8 @@ const getResumoMeses = (resumoAno) => {
     return resumoMeses
 }
 
-const getInicio = async () => {
-    const resumoAno = await getResumoAno()
+const getInicio = async (key) => {
+    const resumoAno = await getResumoAno(key)
 
     const totalInvestimentosAtual = getTotalInvestimentosAtual(resumoAno)
     const totalBalancoCorrenteAtual = getTotalBalancoCorrenteAtual(resumoAno)
