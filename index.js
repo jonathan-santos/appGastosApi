@@ -1,16 +1,7 @@
-const testes = require('./testes')
+const { getInicio } = require('./inicio')
+const { novoGasto } = require('./novo')
 
-const run = async () => {
-    console.clear()
-
-    // await testes.novoGastoTest()
-
-    // await testes.novosGastosTest()
-
-    await testes.inicioTest()
-
-    console.log('\nPressione ctrl + c para continuar...')
-    process.openStdin()
+module.exports = {
+    getInicio,
+    novoGasto
 }
-
-run()

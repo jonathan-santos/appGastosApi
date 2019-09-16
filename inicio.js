@@ -1,10 +1,8 @@
-const { getApi } = require('./api')
-
+const api = require('./api')
 const utils = require('./utils')
 
-const getResumoAno = async (key) => {
-    const api = await getApi(key)
-    const res = await api.get('values/2019')
+const getResumoAno = async (token) => {
+    const res = await api(token).get('values/2019')
     return res.data.values
 }
 

@@ -1,7 +1,7 @@
-const { getInicio } = require('./inicio')
-const { novoGasto } = require('./novo')
+const api = require('./index')
+const auth = require('./auth')
 
-const key = require('./auth.json')
+const ServiceAccountkey = require('./auth.json')
 
 const gastosTestes = [
     { data: '1/1/2019', titulo: 'Alguma coisa', valor: 1, tipoGasto: 'Comida', formaPagamento: 'Dinheiro', comentario: 'Bla' },
@@ -18,32 +18,42 @@ const gastosTestes = [
     { data: '31/12/2019', titulo: 'Mais alguma outra coisa', valor: 5.45, tipoGasto: 'Transporte', formaPagamento: 'Transferência' },
 ]
 
-const inicioTest = async () => {
+const inicioTest = async (token) => {
     console.clear()
 
-    const inicio = await getInicio(key)
+    const inicio = await api.getInicio(token)
     console.log(`inicio.totalBalancoCorrenteAtual: ${inicio.totalBalancoCorrenteAtual}`)
     console.log(`inicio.totalInvestimentosAtual: ${inicio.totalInvestimentosAtual}`)
     console.table(inicio.resumoMeses)
 }
 
-const novoGastoTest = async () => {
-    novoGasto(gastosTestes[0], key)
+const novoGastoTest = async (token) => {
+    api.novoGasto(gastosTestes[0], token)
 }
 
-const novosGastosTest = async () => {
+const novosGastosTest = async (token) => {
     let count = 0
     const interval = setInterval(() => {
         if(count == gastosTestes.length - 1) {
             clearInterval(interval)
         }
-        novoGasto(gastosTestes[count], key)
+        api.novoGasto(gastosTestes[count], token)
         count++
     }, 1000)
 }
 
-module.exports = {
-    inicioTest,
-    novoGastoTest,
-    novosGastosTest
+const run = async () => {
+    console.clear()
+
+    const jwt = await auth.getJWT(ServiceAccountkey)
+    const token = jwt.credentials.access_token
+
+    // await testes.novoGastoTest(token)
+    // await testes.novosGastosTest(token)
+    await inicioTest(token)
+
+    console.log('\nPressione ctrl + c para continuar...')
+    process.openStdin()
 }
+
+run()

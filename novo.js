@@ -1,18 +1,15 @@
-const { getApi } = require('./api')
+const api = require('./api')
 
-const novoGasto = async (gasto, key) => {
-    const api = await getApi(key)
-
+const novoGasto = async (gasto, token) => {
+    const partesData = gasto.data.split('/')
+    const data = {
+        dia: partesData[0],
+        mes: partesData[1],
+        ano: partesData[2]
+    }
+    
     try {
-        console.log("novoGasto: " + JSON.stringify(gasto))
-
-        const partesData = gasto.data.split('/')
-        const data = {
-            dia: partesData[0],
-            mes: partesData[1],
-            ano: partesData[2]
-        }
-        await api.post(`values/${data.mes}%2F${data.ano}!A5:F5:append`, {
+        await api(token).post(`values/${data.mes}%2F${data.ano}!A5:F5:append`, {
             values: [[
                 data.dia,
                 gasto.titulo,
@@ -26,6 +23,8 @@ const novoGasto = async (gasto, key) => {
                 valueInputOption: 'RAW'
             }
         })
+
+        console.log("novoGasto: " + JSON.stringify(gasto))
     } catch (erro) {
         console.log('Erro durante POST de novoGasto \nErro: ' + erro)
     }
